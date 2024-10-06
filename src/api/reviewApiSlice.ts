@@ -9,13 +9,11 @@ export const reviewApiSlice = createApi({
     addReview: builder.mutation<any, TRatingCreate>({
       query: (data) => ({
         url: '/rating',
-        method: 'PATCH',
+        method: 'POST',
         body: [data],
       }),
     }),
   }),
 });
 
-export const {
-  useAddReviewMutation
-} = reviewApiSlice
+export const { useAddReviewMutation } = reviewApiSlice;

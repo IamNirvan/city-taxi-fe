@@ -1,6 +1,12 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithReauth } from './interceptorsSlice';
-import { TBookingRide, TBookingStatusCreate, TCreateBooking, TGetBookingById } from '../types/booking';
+import {
+  TBookingRide,
+  TBookingStatusCreate,
+  TCreateBooking,
+  TGetBookingById,
+} from '../types/booking';
+import TCreatePayment from '../types/payment';
 
 export const bookingApiSlice = createApi({
   reducerPath: 'bookingApi',
@@ -16,13 +22,13 @@ export const bookingApiSlice = createApi({
     getBookingByid: builder.query<any[], TGetBookingById>({
       query: ({ id, customerId, driverId }) => ({
         url: `/bookings`,
-        params: { id, customerId, driverId }
+        params: { id, customerId, driverId },
       }),
     }),
     getBookings: builder.query<TBookingRide[], void>({
       query: () => ({
         url: `/bookings`,
-        method: 'GET'
+        method: 'GET',
       }),
     }),
     updateBookingStatus: builder.mutation<any, TBookingStatusCreate>({
@@ -34,9 +40,15 @@ export const bookingApiSlice = createApi({
     }),
     markAsCompletd: builder.mutation<any, number>({
       query: (id) => ({
-        url: '/bookings/mark/as/completed',
+        url: `/bookings/mark/as/completed?ids=${id}`,
         method: 'PATCH',
-        body: [{ ids: id }],
+      }),
+    }),
+    payBooking: builder.mutation<any, TCreatePayment>({
+      query: (data) => ({
+        url: '/payments',
+        method: 'POST',
+        body: [data],
       }),
     }),
   }),
@@ -46,5 +58,6 @@ export const {
   useBookRideMutation,
   useLazyGetBookingsQuery,
   useLazyGetBookingByidQuery,
-  useMarkAsCompletdMutation
-} = bookingApiSlice
+  useMarkAsCompletdMutation,
+  usePayBookingMutation,
+} = bookingApiSlice;
