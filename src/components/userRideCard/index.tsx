@@ -60,7 +60,7 @@ export default function UserRideCrd({
             <div className="detail">Driver No: {data.driver.phoneNumber} </div>
 
             <div className="button">
-              {data.status == bookingStatus.paid && (
+              {data.status == bookingStatus.paid && !driver && (
                 <Button
                   sx={{ marginTop: '8px' }}
                   color="success"
@@ -72,7 +72,7 @@ export default function UserRideCrd({
                   Review
                 </Button>
               )}
-              {data.status == bookingStatus.completed && (
+              {data.status == bookingStatus.completed && !driver && (
                 <Button
                   sx={{ marginTop: '8px' }}
                   color="success"

@@ -23,7 +23,14 @@ const CompletedRides = ({ userId, onCompleteRide }: Props) => {
       {isBookingsLoading && <CircularProgress />}
       {bookingData ? (
         bookingData.map((booking, index) => (
-          <UserRideCrd key={index} data={booking} onCompleteRide={() => onCompleteRide(booking)} />
+          <UserRideCrd
+            key={index}
+            data={booking}
+            onCompleteRide={() => {
+              triggerGetBookings({ driverId: userId, status: 'DONE' });
+              onCompleteRide(booking);
+            }}
+          />
         ))
       ) : (
         <div className="no-data">
