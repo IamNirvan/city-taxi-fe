@@ -26,6 +26,7 @@ const AcceptedRides = ({ userId, onCompleteRide }: Props) => {
           <UserRideCrd
             key={index}
             data={booking}
+            driver={true}
             onCompleteRide={() => {
               triggerGetBookings({ driverId: userId, status: 'ACTIVE' });
               onCompleteRide(booking);
