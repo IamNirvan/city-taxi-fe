@@ -163,13 +163,25 @@ export default function Dashboard() {
               <Tab>Pending Reviews</Tab>
             </TabList>
             <TabPanel>
-              <OngoingRides />
+              <OngoingRides
+                userId={accData.uderId}
+                onPayRide={onPayRide}
+                oReviewRide={oReviewRide}
+              />
             </TabPanel>
             <TabPanel>
-              <PendingPayments />
+              <PendingPayments
+                userId={accData.uderId}
+                onPayRide={onPayRide}
+                oReviewRide={oReviewRide}
+              />
             </TabPanel>
             <TabPanel>
-              <PendingReviews />
+              <PendingReviews
+                userId={accData.uderId}
+                onPayRide={onPayRide}
+                oReviewRide={oReviewRide}
+              />
             </TabPanel>
           </Tabs>
           {/* {isBookingsLoading && <CircularProgress />}

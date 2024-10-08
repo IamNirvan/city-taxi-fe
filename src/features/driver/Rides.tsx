@@ -8,6 +8,7 @@ import { useLazyGetBookingByidQuery, useMarkAsCompletdMutation } from '../../api
 import LogoContainer from '../../components/logoContainer';
 import UserRideCrd from '../../components/userRideCard';
 import { useAddReviewMutation } from '../../api/reviewApiSlice';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
 export default function Rides() {
   const { t, i18n } = useTranslation();
@@ -45,6 +46,14 @@ export default function Rides() {
           />
         )}
         <div className="vehicle-container">
+          <Tabs>
+            <TabList>
+              <Tab>Accepted Rides</Tab>
+              <Tab>Pending Payments</Tab>
+              <Tab>Pending Reviews</Tab>
+            </TabList>
+            <TabPanel></TabPanel>
+          </Tabs>
           {isBookingsLoading && <CircularProgress />}
           {bookingData ? (
             bookingData.map((booking, index) => (
