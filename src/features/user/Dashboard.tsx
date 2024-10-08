@@ -21,6 +21,10 @@ import { useLazyGetBookingByidQuery, usePayBookingMutation } from '../../api/boo
 import { useAddReviewMutation } from '../../api/reviewApiSlice';
 import PaymentMethod from '../../components/paymentMethod/PaymentMethod';
 import TCreatePayment from '../../types/payment';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import OngoingRides from './tabs/OngoingRides';
+import PendingPayments from './tabs/PendingPayments';
+import PendingReviews from './tabs/PendingReviews';
 
 export default function Dashboard() {
   const { t, i18n } = useTranslation();
@@ -152,7 +156,23 @@ export default function Dashboard() {
           </DialogActions>
         </Dialog>
         <div className="ride-body">
-          {isBookingsLoading && <CircularProgress />}
+          <Tabs>
+            <TabList>
+              <Tab>Ongoing Rides</Tab>
+              <Tab>Pending Payments</Tab>
+              <Tab>Pending Reviews</Tab>
+            </TabList>
+            <TabPanel>
+              <OngoingRides />
+            </TabPanel>
+            <TabPanel>
+              <PendingPayments />
+            </TabPanel>
+            <TabPanel>
+              <PendingReviews />
+            </TabPanel>
+          </Tabs>
+          {/* {isBookingsLoading && <CircularProgress />}
           {bookingData ? (
             bookingData.map((booking, index) => (
               <UserRideCrd
@@ -168,7 +188,7 @@ export default function Dashboard() {
               <LogoContainer />
               <h3 className="no-vhicle">You have no rides yet.</h3>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

@@ -6,7 +6,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import './utils/i18n';
-import logger from "./utils/logger";
+import logger from './utils/logger';
+import 'react-tabs/style/react-tabs.css';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
