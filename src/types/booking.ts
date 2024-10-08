@@ -51,7 +51,7 @@ type TGetBookingById = {
   id?: number;
   driverId?: number;
   customerId?: number;
-  status?: 'COMPLETED' | 'PENDING' | 'CANCELLED' | 'ACTIVE' | 'DONE';
+  status?: 'COMPLETED' | 'PENDING' | 'CANCELLED' | 'ACTIVE' | 'DONE' | 'PAID';
 };
 
 type TRatingCreate = {

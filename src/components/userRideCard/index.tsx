@@ -6,10 +6,10 @@ import { TBookingRide } from '../../types/booking';
 
 interface TaxiCardProps {
   data: TBookingRide;
-  driver?: boolean;
-  oReviewRide?: () => void;
-  onPayRide?: () => void;
-  onCompleteRide?: () => void;
+  driver?: boolean | undefined;
+  oReviewRide?: (() => void) | undefined;
+  onPayRide?: (() => void) | undefined;
+  onCompleteRide?: (() => void) | undefined;
 }
 export default function UserRideCrd({
   data,
@@ -38,17 +38,26 @@ export default function UserRideCrd({
             </div>
             <div className="detail">Per km : {data.vehicle.vehicleType.pricePerMeter}Rs</div>
             <div className="detail">Passenger Count : {data.vehicle.vehicleType.seatCount}</div>
-            <div className="detail">Vehicle Number: {data.vehicle.licensePlate}</div>
+            <div className="detail">Vehicle No: {data.vehicle.licensePlate}</div>
             <div className="detail">
-              Distance: {data.distanceInMeters ? data.distanceInMeters / 1000 : 0} Km
+              Distance:{' '}
+              {data.distanceInMeters
+                ? Math.round((data.distanceInMeters / 1000 + Number.EPSILON) * 100) / 100
+                : 0}{' '}
+              Km
             </div>
             <div className="detail">Status: {data.status}</div>
-            <div className="detail">start Destination: Galle</div>
-            <div className="detail">end Destination: Matara</div>
-            <div className="detail">Full Payment: {data.estimatedCost}Rs </div>
+            <div className="detail">Start Destination: Galle</div>
+            <div className="detail">End Destination: Matara</div>
+            <div className="detail">
+              Cost:{' '}
+              {new Intl.NumberFormat('en-LK', { style: 'currency', currency: 'LKR' }).format(
+                data.estimatedCost
+              )}
+            </div>
             <div className="detail">Driver Name: {data.driver.name} </div>
             <div className="detail">Customer Name: {data.customer.name} </div>
-            <div className="detail">Driver Number: {data.driver.phoneNumber} </div>
+            <div className="detail">Driver No: {data.driver.phoneNumber} </div>
 
             <div className="button">
               {data.status == bookingStatus.paid && (

@@ -6,6 +6,7 @@ import LogoContainer from '../../../components/logoContainer';
 
 interface Props {
   userId: number;
+  isUser?: boolean;
   oReviewRide: (data: any) => void;
   onPayRide: (data: any) => void;
 }
@@ -15,6 +16,7 @@ const OngoingRides = ({ userId, oReviewRide, onPayRide }: Props) => {
     useLazyGetBookingByidQuery();
 
   useEffect(() => {
+    console.log('userId', userId);
     triggerGetBookings({ customerId: userId, status: 'ACTIVE' });
   }, []);
 

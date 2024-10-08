@@ -41,6 +41,7 @@ export default function Dashboard() {
   const [triggerPayBooking, { isLoading }] = usePayBookingMutation();
 
   useEffect(() => {
+    console.log('acc', JSON.stringify(accData));
     triggerGetBookings({ customerId: accData.uderId });
   }, []);
 
@@ -164,21 +165,21 @@ export default function Dashboard() {
             </TabList>
             <TabPanel>
               <OngoingRides
-                userId={accData.uderId}
+                userId={accData.userId}
                 onPayRide={onPayRide}
                 oReviewRide={oReviewRide}
               />
             </TabPanel>
             <TabPanel>
               <PendingPayments
-                userId={accData.uderId}
+                userId={accData.userId}
                 onPayRide={onPayRide}
                 oReviewRide={oReviewRide}
               />
             </TabPanel>
             <TabPanel>
               <PendingReviews
-                userId={accData.uderId}
+                userId={accData.userId}
                 onPayRide={onPayRide}
                 oReviewRide={oReviewRide}
               />
