@@ -15,7 +15,7 @@ const PendingPayments = ({ userId, onCompleteRide }: Props) => {
 
   useEffect(() => {
     console.log('userId', userId);
-    triggerGetBookings({ driverId: userId, status: 'ACTIVE' });
+    triggerGetBookings({ driverId: userId, status: 'COMPLETED' });
   }, []);
 
   return (
