@@ -20,9 +20,9 @@ export const bookingApiSlice = createApi({
       }),
     }),
     getBookingByid: builder.query<any[], TGetBookingById>({
-      query: ({ id, customerId, driverId }) => ({
+      query: ({ id, customerId, driverId, status }) => ({
         url: `/bookings`,
-        params: { id, customerId, driverId },
+        params: { id, customerId, driverId, status },
       }),
     }),
     getBookings: builder.query<TBookingRide[], void>({

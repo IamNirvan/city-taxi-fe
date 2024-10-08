@@ -15,7 +15,7 @@ const PendingReviews = ({ userId, oReviewRide, onPayRide }: Props) => {
     useLazyGetBookingByidQuery();
 
   useEffect(() => {
-    triggerGetBookings({ customerId: userId, status: 'ACTIVE' });
+    triggerGetBookings({ customerId: userId, status: 'PAID' });
   }, []);
 
   return (

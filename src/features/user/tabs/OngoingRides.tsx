@@ -15,6 +15,7 @@ const OngoingRides = ({ userId, oReviewRide, onPayRide }: Props) => {
     useLazyGetBookingByidQuery();
 
   useEffect(() => {
+    console.log('userId', userId);
     triggerGetBookings({ customerId: userId, status: 'ACTIVE' });
   }, []);
 
