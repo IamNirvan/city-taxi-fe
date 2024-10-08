@@ -26,8 +26,14 @@ const PendingReviews = ({ userId, oReviewRide, onPayRide }: Props) => {
           <UserRideCrd
             key={index}
             data={booking}
-            oReviewRide={() => oReviewRide(booking)}
-            onPayRide={() => onPayRide(booking)}
+            oReviewRide={() => {
+              triggerGetBookings({ customerId: userId, status: 'PAID' });
+              oReviewRide(booking);
+            }}
+            onPayRide={() => {
+              triggerGetBookings({ customerId: userId, status: 'PAID' });
+              onPayRide(booking);
+            }}
           />
         ))
       ) : (

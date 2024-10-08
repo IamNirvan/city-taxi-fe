@@ -28,8 +28,14 @@ const OngoingRides = ({ userId, oReviewRide, onPayRide }: Props) => {
           <UserRideCrd
             key={index}
             data={booking}
-            oReviewRide={() => oReviewRide(booking)}
-            onPayRide={() => onPayRide(booking)}
+            oReviewRide={() => {
+              triggerGetBookings({ customerId: userId, status: 'ACTIVE' });
+              oReviewRide(booking);
+            }}
+            onPayRide={() => {
+              triggerGetBookings({ customerId: userId, status: 'ACTIVE' });
+              onPayRide(booking);
+            }}
           />
         ))
       ) : (
