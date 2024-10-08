@@ -26,6 +26,7 @@ const PendingPayments = ({ userId, onCompleteRide }: Props) => {
           <UserRideCrd
             key={index}
             data={booking}
+            driver={true}
             onCompleteRide={() => {
               triggerGetBookings({ driverId: userId, status: 'COMPLETED' });
               onCompleteRide(booking);
