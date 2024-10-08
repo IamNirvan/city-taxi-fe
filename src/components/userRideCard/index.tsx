@@ -6,10 +6,10 @@ import { TBookingRide } from '../../types/booking';
 
 interface TaxiCardProps {
   data: TBookingRide;
-  driver?: boolean;
-  oReviewRide?: () => void;
-  onPayRide?: () => void;
-  onCompleteRide?: () => void;
+  driver?: boolean | undefined;
+  oReviewRide?: (() => void) | undefined;
+  onPayRide?: (() => void) | undefined;
+  onCompleteRide?: (() => void) | undefined;
 }
 export default function UserRideCrd({
   data,

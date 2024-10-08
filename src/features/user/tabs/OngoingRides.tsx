@@ -6,6 +6,7 @@ import LogoContainer from '../../../components/logoContainer';
 
 interface Props {
   userId: number;
+  isUser?: boolean;
   oReviewRide: (data: any) => void;
   onPayRide: (data: any) => void;
 }

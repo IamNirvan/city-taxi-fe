@@ -9,6 +9,7 @@ import LogoContainer from '../../components/logoContainer';
 import UserRideCrd from '../../components/userRideCard';
 import { useAddReviewMutation } from '../../api/reviewApiSlice';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import AcceptedRides from './tabs/AcceptedRides';
 
 export default function Rides() {
   const { t, i18n } = useTranslation();
@@ -52,7 +53,9 @@ export default function Rides() {
               <Tab>Pending Payments</Tab>
               <Tab>Pending Reviews</Tab>
             </TabList>
-            <TabPanel></TabPanel>
+            <TabPanel>
+              <AcceptedRides userId={accData.userId} onCompleteRide={onCompleteRide} />
+            </TabPanel>
           </Tabs>
           {isBookingsLoading && <CircularProgress />}
           {bookingData ? (
