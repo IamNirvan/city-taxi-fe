@@ -134,7 +134,7 @@ export default function Dashboard() {
           </DialogContent>
           <DialogActions sx={{ pb: 3, px: 3 }}>
             <Button onClick={() => setOpenPay(false)}>Cancel</Button>
-            {/* {bookingData && (
+            {bookingData && (
               <PaymentMethod
                 amount={Number(bookingData[0]?.estimatedCost)}
                 items={bookingData[0].id}
@@ -150,10 +150,10 @@ export default function Dashboard() {
                 onDismissed={onDismissed}
                 onError={onError}
               />
-            )} */}
-            <Button variant="contained" type="button" onClick={onSuccess}>
+            )}
+            {/* <Button variant="contained" type="button" onClick={onSuccess}>
               Pay
-            </Button>
+            </Button> */}
           </DialogActions>
         </Dialog>
         <div className="ride-body">

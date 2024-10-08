@@ -10,6 +10,8 @@ import UserRideCrd from '../../components/userRideCard';
 import { useAddReviewMutation } from '../../api/reviewApiSlice';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import AcceptedRides from './tabs/AcceptedRides';
+import PendingPayments from './tabs/PendingPayments';
+import CompletedRides from './tabs/CompletedRides';
 
 export default function Rides() {
   const { t, i18n } = useTranslation();
@@ -51,13 +53,19 @@ export default function Rides() {
             <TabList>
               <Tab>Accepted Rides</Tab>
               <Tab>Pending Payments</Tab>
-              <Tab>Pending Reviews</Tab>
+              <Tab>Completed Rides</Tab>
             </TabList>
             <TabPanel>
               <AcceptedRides userId={accData.userId} onCompleteRide={onCompleteRide} />
             </TabPanel>
+            <TabPanel>
+              <PendingPayments userId={accData.userId} onCompleteRide={onCompleteRide} />
+            </TabPanel>
+            <TabPanel>
+              <CompletedRides userId={accData.userId} onCompleteRide={onCompleteRide} />
+            </TabPanel>
           </Tabs>
-          {isBookingsLoading && <CircularProgress />}
+          {/* {isBookingsLoading && <CircularProgress />}
           {bookingData ? (
             bookingData.map((booking, index) => (
               <UserRideCrd
@@ -73,7 +81,7 @@ export default function Rides() {
               <LogoContainer />
               <h3 className="no-vhicle">You have no rides yet.</h3>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>
