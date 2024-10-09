@@ -39,6 +39,7 @@ export default function Dashboard() {
   const storedAccount = localStorage.getItem('account');
   const accData = storedAccount ? JSON.parse(storedAccount) : null;
   const [triggerPayBooking, { isLoading }] = usePayBookingMutation();
+  const [selectedPayment, setSelectedPayment] = useState<any>();
 
   useEffect(() => {
     console.log('acc', JSON.stringify(accData));
@@ -67,6 +68,7 @@ export default function Dashboard() {
   };
 
   const onPayRide = (data: any) => {
+    setSelectedPayment(data);
     console.log('onPayRide data ', data);
     setOpenPay(true);
   };
@@ -76,10 +78,10 @@ export default function Dashboard() {
     setOpen(true);
   };
 
-  const onSuccess = () => {
+  const onSuccess = (booking: any) => {
     alert('Yayy!!');
-    if (bookingData) {
-      handlePayment({ cost: bookingData[0]?.estimatedCost, bookingId: bookingData[0]?.id });
+    if (selectedPayment) {
+      handlePayment({ cost: selectedPayment?.estimatedCost, bookingId: booking?.id });
     }
   };
   const onDismissed = () => console.log('onDismissed');
@@ -134,14 +136,14 @@ export default function Dashboard() {
           </DialogContent>
           <DialogActions sx={{ pb: 3, px: 3 }}>
             <Button onClick={() => setOpenPay(false)}>Cancel</Button>
-            {bookingData && (
+            {selectedPayment && (
               <PaymentMethod
-                amount={Number(bookingData[0]?.estimatedCost)}
-                items={bookingData[0].id}
-                firstName={bookingData[0]?.customer?.name?.split(' ')[0]}
-                lastName={bookingData[0]?.customer?.name?.split(' ')[1]}
-                email={bookingData[0]?.customer?.email}
-                phone={bookingData[0]?.customer?.phoneNumber}
+                amount={Number(selectedPayment?.estimatedCost)}
+                items={selectedPayment?.id}
+                firstName={selectedPayment?.customer?.name?.split(' ')[0]}
+                lastName={selectedPayment?.customer?.name?.split(' ')[1]}
+                email={selectedPayment?.customer?.email}
+                phone={selectedPayment?.customer?.phoneNumber}
                 address="CityTaxi Head Office, 309 High Level Rd, Nugegoda 00600"
                 delivery_address=""
                 delivery_city=""
