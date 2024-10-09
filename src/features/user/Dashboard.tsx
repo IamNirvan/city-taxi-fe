@@ -79,9 +79,8 @@ export default function Dashboard() {
   };
 
   const onSuccess = (booking: any) => {
-    alert('Yayy!!');
     if (selectedPayment) {
-      handlePayment({ cost: selectedPayment?.estimatedCost, bookingId: booking?.id });
+      handlePayment({ cost: selectedPayment?.estimatedCost, bookingId: selectedPayment?.id });
     }
   };
   const onDismissed = () => console.log('onDismissed');
@@ -136,7 +135,7 @@ export default function Dashboard() {
           </DialogContent>
           <DialogActions sx={{ pb: 3, px: 3 }}>
             <Button onClick={() => setOpenPay(false)}>Cancel</Button>
-            {selectedPayment && (
+            {/* {selectedPayment && (
               <PaymentMethod
                 amount={Number(selectedPayment?.estimatedCost)}
                 items={selectedPayment?.id}
@@ -152,10 +151,10 @@ export default function Dashboard() {
                 onDismissed={onDismissed}
                 onError={onError}
               />
-            )}
-            {/* <Button variant="contained" type="button" onClick={onSuccess}>
+            )} */}
+            <Button variant="contained" type="button" onClick={onSuccess}>
               Pay
-            </Button> */}
+            </Button>
           </DialogActions>
         </Dialog>
         <div className="ride-body">
